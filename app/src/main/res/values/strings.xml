@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">IMDB</string>
+    <string name="poster_transition_name">poster_transition_name</string>
+    <string name="released">Released: </string>
+    <string name="duration">Duration: </string>
+    <string name="genre">Genre: </string>
+    <string name="director">Director: </string>
+    <string name="writer">Writer(s): </string>
+    <string name="stars">Stars: </string>
+    <string name="plot">Plot: </string>
+    <string name="language">Language: </string>
+    <string name="awards">Awards: </string>
+    <string name="production">Production: </string>
+    <string name="box_office">BoxOffice: </string>
+    <string name="lang_country">%s (%s)</string>
+    <string name="ratings">Ratings: </string>
+    <string name="imdb">IMDB</string>
+    <string name="rotten_tomatoes">Rotten Tomatoes</string>
+    <string name="metacritic">Metacritic</string>
+    <string name="seasons">Seasons: </string>
+    <string name="not_available">N/A</string>
+    <string name="no_content">No content yet</string>
+</resources>
