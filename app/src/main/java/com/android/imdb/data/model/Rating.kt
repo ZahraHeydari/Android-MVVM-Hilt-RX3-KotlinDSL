@@ -1,11 +1,10 @@
 package com.android.imdb.data.model
 
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Rating(
-    val id: Long = 1,
-    val imdbID: String,
-    val title: String,
-    val year: String,
-    val type: String,
-    val poster: String,
-    var fetchedBefore: Boolean = false
+    @Json(name = "Source") val source: String,
+    @Json(name = "Value") val value: String
 )

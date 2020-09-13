@@ -19,7 +19,7 @@ android {
 
         multiDexEnabled = true
 
-        viewBinding{
+        viewBinding {
             isEnabled = true
         }
     }
@@ -27,8 +27,20 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 
@@ -43,15 +55,24 @@ dependencies {
     implementation(Libraries.swipeRefreshLayout)
     implementation(Libraries.recyclerView)
     implementation(Libraries.multidex)
+    implementation(Libraries.fragmentKTX)
+    implementation(Libraries.viewModelLifecycle)
 
     implementation(APILibraries.retrofit)
+    implementation(APILibraries.retrofitRXJava3)
     implementation(APILibraries.retrofitConverterMoshi)
     implementation(APILibraries.moshi)
     implementation(APILibraries.moshiKotlin)
     implementation(APILibraries.moshiAdapters)
+    implementation(APILibraries.loggingInterceptor)
+
+    implementation(RXLibraries.rxAndroid)
+    implementation(RXLibraries.rxJava)
 
     implementation(DILibraries.hiltAndroid)
+    implementation(DILibraries.hiltViewModel)
     kapt(DILibraries.hiltAndroidCompiler)
+    kapt(DILibraries.hiltCompiler)
 
     testImplementation(TestLibraries.junit4)
     androidTestImplementation(TestLibraries.testRunner)

@@ -1,3 +1,7 @@
 package com.android.imdb.data.model
 
-data class SearchResult(val search: List<Movie>)
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class SearchResult(@Json(name = "Search") val search: List<Movie>)
