@@ -53,6 +53,9 @@ class MoviesFragment : Fragment() {
                 adapter.mMovieList = it.search
             })
 
+            isLoading.observe(this@MoviesFragment, Observer {
+                binding?.movieProgressBar?.visibility = if (it) View.VISIBLE else View.GONE
+            })
         }
         return view
 

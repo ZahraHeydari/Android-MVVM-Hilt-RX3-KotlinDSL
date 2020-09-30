@@ -42,7 +42,6 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentDetailBinding.inflate(inflater)
-        val view = binding?.root
 
 
         with(detailViewModel) {
@@ -52,35 +51,39 @@ class DetailFragment : Fragment() {
             movieDetailData.observe(this@DetailFragment, Observer {
                 loadData(it)
             })
+
+            isLoading.observe(this@DetailFragment, Observer {
+                binding?.detailProgressBar?.visibility = if (it == true) View.VISIBLE else View.GONE
+            })
         }
 
 
-        return view
+        return binding?.root
     }
 
 
     private fun loadData(movieDetail: MovieDetail) {
 
         binding?.run {
-
             detailPosterImageView.load(movieDetail.poster)
+            detailTitleTextView.text = "${movieDetail.title} (${movieDetail.year})"
             detailProductionTextView.text = movieDetail.production
             detailWriterTextView.text = movieDetail.writer
-            detailTitleTextView.text = movieDetail.title
             detailAwardsTextView.text = movieDetail.awards
             detailBoxOfficeTextView.text = movieDetail.boxOffice
             detailPlotTextView.text = movieDetail.plot
             detailDirectorTextView.text = movieDetail.director
             detailDurationTextView.text = movieDetail.runtime
             detailTypeTextView.text = movieDetail.type
-            detailYearTextView.text = movieDetail.year
             detailStarsTextView.text = movieDetail.actors
             detailReleasedTextView.text = movieDetail.released
             detailLanguageTextView.text = movieDetail.language
             detailRatingsImdbTextView.text = movieDetail.imdbRating
             detailGenreTextView.text = movieDetail.genre
-            detailRatingsRottenTomatoesTextView.text =  movieDetail.ratings?.find { it.source == "Rotten Tomatoes" }?.value ?: "N/A"
-            detailRatingsMetacriticTextView.text = movieDetail.ratings?.find { it.source == "Metacritic" }?.value ?: "N/A"
+            detailRatingsRottenTomatoesTextView.text =
+                movieDetail.ratings?.find { it.source == "Rotten Tomatoes" }?.value ?: "N/A"
+            detailRatingsMetacriticTextView.text =
+                movieDetail.ratings?.find { it.source == "Metacritic" }?.value ?: "N/A"
         }
     }
 

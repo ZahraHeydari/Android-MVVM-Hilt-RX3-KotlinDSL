@@ -27,7 +27,7 @@ data class MovieDetail(
     var imdbVotes: String?,
     @Json(name = "Type") val type: String,
     @Json(name = "DVD") var dvd: String?,
-    @Json(name = "BoxOffice") var boxOffice: String?,
+    @Json(name = "BoxOffice") var boxOffice: String? = "",
     @Json(name = "TotalSeasons") var totalSeasons: String?,
     @Json(name = "Production") var production: String?,
     @Json(name = "Website") var website: String?,
