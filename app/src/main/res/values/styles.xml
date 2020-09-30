@@ -7,4 +7,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="LabelStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="BodyStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/whiteSmoke</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
 </resources>

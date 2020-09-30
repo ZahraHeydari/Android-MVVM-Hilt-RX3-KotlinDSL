@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.android.imdb.data.model.Movie
+import com.android.imdb.data.model.MovieDetail
 import com.android.imdb.data.repository.RemoteRepository
 import com.android.imdb.data.source.APIResponse
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -18,17 +18,17 @@ class DetailViewModel @ViewModelInject constructor(
 ) : ViewModel() {
 
 
-    private val movieData = MutableLiveData<Movie>()
-    val movie: LiveData<Movie> = movieData
+    private val _movieDetailData = MutableLiveData<MovieDetail>()
+    val movieDetailData: LiveData<MovieDetail> = _movieDetailData
     val isLoading = MutableLiveData<Boolean>()
     private val compositeDisposable = CompositeDisposable()
 
-    fun loadDetail(id: String) {
+    fun getDetail(id: String) {
         showLoading(true)
-        remoteRepository.onDetail(compositeDisposable, id, object : APIResponse<Movie> {
-            override fun onSuccess(result: Movie?) {
+        remoteRepository.onDetail(compositeDisposable, id, object : APIResponse<MovieDetail> {
+            override fun onSuccess(result: MovieDetail?) {
                 showLoading(false)
-                movieData.value = result
+                _movieDetailData.value = result
             }
 
             override fun onError(t: Throwable) {

@@ -1,6 +1,7 @@
 package com.android.imdb.data.repository
 
 import com.android.imdb.data.model.Movie
+import com.android.imdb.data.model.MovieDetail
 import com.android.imdb.data.model.SearchResult
 import com.android.imdb.data.source.APIResponse
 import com.android.imdb.data.source.APIService
@@ -33,7 +34,7 @@ class RemoteRepository @Inject constructor(private val apiService: APIService) {
     fun onDetail(
         compositeDisposable: CompositeDisposable,
         id: String,
-        onResponse: APIResponse<Movie>
+        onResponse: APIResponse<MovieDetail>
     ): io.reactivex.rxjava3.disposables.Disposable {
         return apiService.detail(id)
             .subscribeOn(io.reactivex.rxjava3.schedulers.Schedulers.io())

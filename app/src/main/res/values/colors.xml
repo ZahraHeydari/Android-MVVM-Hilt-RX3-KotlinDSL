@@ -5,6 +5,8 @@
     <color name="colorPrimaryLight">#4f5b62</color>
     <color name="colorAccent">#ef6c00</color>
 
+    <color name="transparent">#00272727</color>
     <color name="black">#BF323232</color>
     <color name="white">#ffffffff</color>
+    <color name="whiteSmoke">#C4FFFFFF</color>
 </resources>

@@ -34,7 +34,7 @@ object AndroidSdk {
 object Libraries {
     private object Versions {
         const val jetpack = "1.1.0"
-        const val constraintLayout = "1.1.2"
+        const val constraintLayout = "2.0.0"
         const val ktx = "1.3.1"
         const val swipeRefreshLayout = "1.1.0"
         const val recyclerView = "1.1.0"

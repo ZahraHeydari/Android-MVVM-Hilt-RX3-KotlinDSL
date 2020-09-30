@@ -1,10 +1,8 @@
 package com.android.imdb.ui.movies
 
-import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.android.imdb.data.model.SearchResult
 import com.android.imdb.data.repository.RemoteRepository

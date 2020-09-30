@@ -8,7 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.android.imdb.R
+import com.android.imdb.data.model.Movie
 import com.android.imdb.databinding.FragmentMoviesBinding
+import com.android.imdb.ui.MainActivity
+import com.android.imdb.ui.detail.DetailFragment
+import com.android.imdb.utils.newFragmentInstance
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.FragmentScoped
 
@@ -21,7 +26,13 @@ class MoviesFragment : Fragment() {
 
     private val binding get() = _binding // This property is only valid between onCreateView and onDestroyView.
     private val moviesViewModel: MoviesViewModel by viewModels()
-    private val adapter = MoviesAdapter()
+    private val adapter = MoviesAdapter(object : MoviesAdapter.OnMoviesItemOnClickListener {
+
+        override fun onItemClick(movie: Movie) {
+            if (activity is MainActivity) (activity as MainActivity).navigateToDetail(movie)
+        }
+
+    })
 
 
     override fun onCreateView(
@@ -39,7 +50,6 @@ class MoviesFragment : Fragment() {
             loadMovies()
 
             searchResult.observe(this@MoviesFragment, Observer {
-                Log.i(TAG, "onCreateView: $it")
                 adapter.mMovieList = it.search
             })
 
@@ -47,7 +57,6 @@ class MoviesFragment : Fragment() {
         return view
 
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

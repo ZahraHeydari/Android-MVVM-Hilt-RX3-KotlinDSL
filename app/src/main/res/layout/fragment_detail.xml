@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/detail_swipe_refresh"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,26 +18,425 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="16dp"/>
+                android:paddingBottom="16dp">
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/detail_header_container"
+                    android:id="@+id/poster_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="8dp"
+                    android:paddingBottom="16dp"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/detail_image_view"
+                        android:id="@+id/detail_poster_image_view"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:background="@color/colorPrimary"
                         android:scaleType="centerCrop"
+                        android:transitionName="@string/poster_transition_name"
                         app:layout_constraintDimensionRatio="3:4"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/detail_title_shadow_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        app:layout_constraintBottom_toBottomOf="@id/detail_poster_image_view"
+                        app:layout_constraintStart_toStartOf="@id/detail_poster_image_view" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/detail_title_text_view"
+                        style="@style/LabelStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0"
+                        android:gravity="bottom"
+                        android:padding="16dp"
+                        android:translationX="100dp"
+                        app:layout_constraintBottom_toBottomOf="@id/detail_poster_image_view"
+                        app:layout_constraintStart_toStartOf="@id/detail_poster_image_view"
+                        tools:alpha="1"
+                        tools:text="Batman" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_year_text_view"
+                    style="@style/LabelStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/poster_container"
+                    tools:text="Year" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_type_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/background_white_rounded"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/detail_year_text_view"
+                    tools:text="Type" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="end"
+                    app:constraint_referenced_ids="detail_language_label_text_view, detail_director_label_text_view, detail_genre_label_text_view,detail_duration_label_text_view, detail_released_label_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_director_label_text_view"
+                    style="@style/LabelStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/director"
+                    app:layout_constraintTop_toBottomOf="@id/poster_container" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_director_text_view"
+                    style="@style/BodyStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toEndOf="@id/barrier"
+                    app:layout_constraintTop_toTopOf="@id/detail_director_label_text_view"
+                    tools:text="Zack Snyder" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_production_label_text_view"
+                    style="@style/LabelStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/production"
+                    app:layout_constraintTop_toBottomOf="@id/detail_director_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_production_text_view"
+                    style="@style/BodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    app:layout_constraintEnd_toStartOf="@+id/detail_type_text_view"
+                    app:layout_constraintStart_toEndOf="@id/barrier"
+                    app:layout_constraintTop_toTopOf="@id/detail_production_label_text_view"
+                    tools:text="Warner Bros. Pictures" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_released_label_text_view"
+                    style="@style/LabelStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/released"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/detail_production_label_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_released_text_view"
+                    style="@style/BodyStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toEndOf="@id/barrier"
+                    app:layout_constraintTop_toTopOf="@id/detail_released_label_text_view"
+                    tools:text="25 Mar 2016" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_duration_label_text_view"
+                    style="@style/LabelStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/duration"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/detail_released_label_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_duration_text_view"
+                    style="@style/BodyStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toEndOf="@id/barrier"
+                    app:layout_constraintTop_toTopOf="@id/detail_duration_label_text_view"
+                    tools:text="152 min" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_box_office_label_text_view"
+                    style="@style/LabelStyle"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/box_office"
+                    app:layout_constraintEnd_toStartOf="@id/detail_box_office_text_view"
+                    app:layout_constraintTop_toTopOf="@id/detail_duration_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_box_office_text_view"
+                    style="@style/BodyStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/detail_box_office_label_text_view"
+                    tools:text="$293,792,936" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_language_label_text_view"
+                    style="@style/LabelStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/language"
+                    app:layout_constraintTop_toBottomOf="@id/detail_duration_label_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_language_text_view"
+                    style="@style/BodyStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toEndOf="@id/barrier"
+                    app:layout_constraintTop_toTopOf="@id/detail_language_label_text_view"
+                    tools:text="English (USA)" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_genre_label_text_view"
+                    style="@style/LabelStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/genre"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="@id/detail_genre_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/detail_language_label_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_genre_text_view"
+                    style="@style/BodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/barrier"
+                    app:layout_constraintTop_toTopOf="@id/detail_genre_label_text_view"
+                    tools:text="Action, Adventure, Sci-Fi" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_writer_label_text_view"
+                    style="@style/LabelStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/writer"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="@id/detail_writer_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/detail_genre_label_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_writer_text_view"
+                    style="@style/BodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/barrier"
+                    app:layout_constraintTop_toTopOf="@id/detail_writer_label_text_view"
+                    tools:text="Chris Terrio, David S. Goyer, Bob Kane (Batman created by), Bill Finger (Batman created by), Jerry Siegel (Superman created by), Joe Shuster (Superman created by), William Moulton Marston (character created by: Wonder Woman)" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_stars_label_text_view"
+                    style="@style/LabelStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/stars"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="@id/detail_stars_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/detail_writer_label_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_stars_text_view"
+                    style="@style/BodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/barrier"
+                    app:layout_constraintTop_toTopOf="@id/detail_stars_label_text_view"
+                    tools:text="Ben Affleck, Henry Cavill, Amy Adams, Jesse Eisenberg" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_plot_label_text_view"
+                    style="@style/LabelStyle"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/plot"
+                    app:layout_constraintBottom_toBottomOf="@id/detail_plot_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/detail_stars_label_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_plot_text_view"
+                    style="@style/BodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/barrier"
+                    app:layout_constraintTop_toTopOf="@id/detail_plot_label_text_view"
+                    tools:text="Fearing that the actions of Superman are left unchecked, Batman takes on the Man of Steel, while the world wrestles with what kind of a hero it really needs." />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_awards_label_text_view"
+                    style="@style/LabelStyle"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/awards"
+                    app:layout_constraintBottom_toBottomOf="@id/detail_awards_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/detail_plot_label_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_awards_text_view"
+                    style="@style/BodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/barrier"
+                    app:layout_constraintTop_toTopOf="@id/detail_awards_label_text_view"
+                    tools:text="14 wins &amp; 33 nominations." />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_ratings_label_text_view"
+                    style="@style/LabelStyle"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/ratings"
+                    app:layout_constraintTop_toBottomOf="@id/detail_awards_label_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_ratings_label_imdb_text_view"
+                    style="@style/LabelStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="@string/imdb"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp"
+                    app:layout_constraintEnd_toStartOf="@id/detail_ratings_label_rotten_tomatoes_text_view"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/detail_ratings_label_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_ratings_label_rotten_tomatoes_text_view"
+                    style="@style/LabelStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp"
+                    android:gravity="center"
+                    android:text="@string/rotten_tomatoes"
+                    app:layout_constraintEnd_toStartOf="@id/detail_ratings_label_metacritic_text_view"
+                    app:layout_constraintStart_toEndOf="@id/detail_ratings_label_imdb_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/detail_ratings_label_text_view" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_ratings_label_metacritic_text_view"
+                    style="@style/LabelStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp"
+                    android:text="@string/metacritic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/detail_ratings_label_rotten_tomatoes_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/detail_ratings_label_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_ratings_imdb_text_view"
+                    style="@style/BodyStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@id/detail_ratings_label_imdb_text_view"
+                    app:layout_constraintStart_toStartOf="@id/detail_ratings_label_imdb_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/detail_ratings_label_imdb_text_view"
+                    tools:text="7.5/10" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_ratings_rotten_tomatoes_text_view"
+                    style="@style/BodyStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@id/detail_ratings_label_rotten_tomatoes_text_view"
+                    app:layout_constraintStart_toStartOf="@id/detail_ratings_label_rotten_tomatoes_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/detail_ratings_label_rotten_tomatoes_text_view"
+                    tools:text="71%" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/detail_ratings_metacritic_text_view"
+                    style="@style/BodyStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@id/detail_ratings_label_metacritic_text_view"
+                    app:layout_constraintStart_toStartOf="@id/detail_ratings_label_metacritic_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/detail_ratings_label_metacritic_text_view"
+                    tools:text="69/100" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
 

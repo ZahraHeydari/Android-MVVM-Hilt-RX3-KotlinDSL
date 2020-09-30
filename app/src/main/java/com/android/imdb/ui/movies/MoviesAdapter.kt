@@ -9,7 +9,7 @@ import com.android.imdb.data.model.Movie
 import com.android.imdb.databinding.HolderMovieItemBinding
 import kotlin.properties.Delegates
 
-class MoviesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MoviesAdapter(val onMoviesItemOnClickListener: OnMoviesItemOnClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var mMovieList: List<Movie> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
@@ -43,7 +43,18 @@ class MoviesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     error(R.color.colorPrimaryLight)
                 }
             }
+
+
+            itemView.setOnClickListener {
+
+                onMoviesItemOnClickListener.onItemClick(movie)
+            }
         }
+    }
+
+    interface OnMoviesItemOnClickListener {
+
+        fun onItemClick(movie: Movie)
     }
 
     companion object {
