@@ -19,8 +19,7 @@ class MoviesFragment : Fragment() {
 
     private var _binding: FragmentMoviesBinding? = null
 
-    // This property is only valid between onCreateView and onDestroyView.
-    private val binding get() = _binding
+    private val binding get() = _binding // This property is only valid between onCreateView and onDestroyView.
     private val moviesViewModel: MoviesViewModel by viewModels()
     private val adapter = MoviesAdapter()
 

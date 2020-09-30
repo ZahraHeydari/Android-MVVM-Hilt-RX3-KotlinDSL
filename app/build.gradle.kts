@@ -74,6 +74,8 @@ dependencies {
     kapt(DILibraries.hiltAndroidCompiler)
     kapt(DILibraries.hiltCompiler)
 
+    implementation(ImageLoaderLibraries.coil)
+
     testImplementation(TestLibraries.junit4)
     androidTestImplementation(TestLibraries.testRunner)
     androidTestImplementation(TestLibraries.espresso)

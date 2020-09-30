@@ -3,6 +3,8 @@ package com.android.imdb.ui.movies
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import com.android.imdb.R
 import com.android.imdb.data.model.Movie
 import com.android.imdb.databinding.HolderMovieItemBinding
 import kotlin.properties.Delegates
@@ -32,12 +34,19 @@ class MoviesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         RecyclerView.ViewHolder(holderPostBinding.root) {
 
         fun onBind(movie: Movie) {
-            holderPostBinding.movieTitleTextView.text = movie.title
-            holderPostBinding.movieYearTextView.text = movie.year
+
+            with(holderPostBinding) {
+                movieTitleTextView.text = movie.title
+                movieYearTextView.text = movie.year
+
+                movieImageView.load(movie.poster) {
+                    error(R.color.colorPrimaryLight)
+                }
+            }
         }
     }
 
     companion object {
-        private val TAG = MoviesAdapter::class.java.simpleName
+        private const val TAG = "MoviesAdapter"
     }
 }

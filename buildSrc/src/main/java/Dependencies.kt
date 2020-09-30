@@ -99,7 +99,6 @@ object DILibraries {
 
 }
 
-
 object RXLibraries {
 
     object Versions {
@@ -109,6 +108,17 @@ object RXLibraries {
 
     const val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.rxJava}"
     const val rxAndroid = "io.reactivex.rxjava3:rxandroid:${Versions.rxAndroid}"
+}
+
+
+object ImageLoaderLibraries{
+
+    object Versions{
+        const val coil = "1.0.0-rc3"
+    }
+
+
+    const val coil = "io.coil-kt:coil:${Versions.coil}"
 }
 
 object TestLibraries {
